@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alonso Casillas Flores · CV</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f5ff;
+      --surface: #ffffff;
+      --ink: #14122b;
+      --muted: #5d5a7a;
+      --accent: #5b3df5;
+      --accent-soft: #e4dfff;
+      --hl: #ffd23f;
+      --line: #d8d4f0;
+      --head: "Bricolage Grotesque", "Segoe UI", sans-serif;
+      --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #12102a; --surface: #1c1940; --ink: #f1efff; --muted: #b3afd6;
+        --accent: #9a86ff; --accent-soft: #2b2660; --line: #342f68;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.05rem/1.65 var(--body); }
+    a { color: var(--accent); }
+    :focus-visible { outline: 3px solid var(--hl); outline-offset: 3px; }
+
+    header.bar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: .75rem clamp(1rem, 5vw, 4rem);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+    }
+    .logo { font: 800 1.2rem var(--head); text-decoration: none; color: var(--ink); }
+    nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
+    nav a:hover { color: var(--accent); }
+    .lang {
+      display: inline-flex; border: 2px solid var(--ink); border-radius: 999px; overflow: hidden;
+      background: transparent; padding: 0; cursor: pointer; font: 700 .85rem var(--body); color: var(--ink);
+    }
+    .lang span { padding: .35rem .8rem; transition: background .2s, color .2s; }
+    .lang span.on { background: var(--ink); color: var(--bg); }
+
+    main { max-width: 1040px; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem) 4rem; }
+    section { padding: 4rem 0 1rem; }
+    h2 { font: 800 clamp(1.8rem, 4vw, 2.6rem)/1.1 var(--head); margin: 0 0 1.5rem; letter-spacing: -.02em; }
+
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; padding-top: 4.5rem; }
+    .hero h1 {
+      font: 800 clamp(3rem, 11vw, 7.5rem)/.92 var(--head); letter-spacing: -.04em; margin: 0 0 1.5rem;
+    }
+    .hero h1 .l2 { display: block; color: var(--accent); }
+    .hero h1 .l3 { display: block; }
+    .role { font-size: 1.25rem; font-weight: 700; margin: 0 0 .25rem; }
+    .contact { color: var(--muted); margin: 0 0 1.5rem; }
+    .lead { max-width: 56ch; font-size: 1.2rem; }
+    .photo {
+      width: clamp(150px, 22vw, 260px); aspect-ratio: 1; border-radius: 42% 58% 55% 45% / 50% 40% 60% 50%;
+      background: var(--accent-soft) url("assets/img/profile.jpg") center/cover; border: 4px solid var(--ink);
+      box-shadow: 10px 10px 0 var(--hl);
+    }
+    .links { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+    .btn {
+      display: inline-block; padding: .65rem 1.2rem; border-radius: 10px; font-weight: 700; text-decoration: none;
+      border: 2px solid var(--ink); color: var(--ink); background: var(--surface);
+      transition: transform .15s, background .15s;
+    }
+    .btn.main { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .timeline { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 3px solid var(--accent); }
+    .timeline li { position: relative; padding: 0 0 2rem 1rem; }
+    .timeline li::before {
+      content: ""; position: absolute; left: calc(-1.5rem - 9px); top: .5rem; width: 15px; height: 15px;
+      background: var(--hl); border: 3px solid var(--ink); border-radius: 50%;
+    }
+    .timeline h3 { margin: 0; font: 700 1.25rem var(--head); }
+    .timeline .meta { color: var(--muted); font-size: .95rem; margin: .1rem 0 .4rem; }
+    .timeline p { margin: 0; max-width: 62ch; }
+
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .skill { background: var(--surface); border: 2px solid var(--ink); border-radius: 14px; padding: 1.25rem; }
+    .skill h3 { margin: 0 0 .75rem; font: 700 1.1rem var(--head); }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; list-style: none; }
+    .chips li { background: var(--accent-soft); padding: .25rem .75rem; border-radius: 999px; font-size: .95rem; }
+
+    .hobbies { display: flex; flex-wrap: wrap; gap: .75rem; padding: 0; list-style: none; }
+    .hobbies li { background: var(--hl); color: #14122b; font-weight: 700; padding: .5rem 1.1rem; border-radius: 10px; }
+
+    footer { text-align: center; color: var(--muted); padding: 2rem 1rem; border-top: 1px solid var(--line); font-size: .95rem; }
+
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; }
+      .photo { order: -1; width: 150px; }
+      nav { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body id="page-top">
+
+  <header class="bar">
+    <a class="logo" href="#page-top">A.C.F.</a>
+    <nav aria-label="Navegación">
+      <a href="#about" data-en="About me">Sobre mí</a>
+      <a href="#experience" data-en="Experience">Experiencia</a>
+      <a href="#education" data-en="Education">Formación</a>
+      <a href="#skills" data-en="Skills">Habilidades</a>
+      <a href="#hobbies" data-en="Hobbies">Hobbies</a>
+    </nav>
+    <button class="lang" id="langBtn" type="button" aria-label="Cambiar idioma / Switch language">
+      <span data-l="es" class="on">ES</span><span data-l="en">EN</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div>
+        <h1>Alonso <span class="l2">Casillas</span><span class="l3">Flores</span></h1>
+        <p class="role" data-en="Web development student">Estudiante de desarrollo web</p>
+        <p class="contact"><span data-en="Valdemorillo, Madrid">Valdemorillo, Madrid</span> · <a href="mailto:alonso17.2005.acf@gmail.com">alonso17.2005.acf@gmail.com</a></p>
+        <p class="lead" data-en="Organized and curious. I like turning ideas into clean, useful web pages, and I learn fast by building real projects.">Organizado y curioso. Me gusta convertir ideas en páginas web limpias y útiles, y aprendo rápido construyendo proyectos reales.</p>
+        <div class="links">
+          <a class="btn main" href="mailto:alonso17.2005.acf@gmail.com" data-en="Contact me">Contáctame</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="photo" role="img" aria-label="Foto de Alonso"></div>
+    </section>
+
+    <section id="experience">
+      <h2 data-en="Experience">Experiencia</h2>
+      <ul class="timeline">
+        <li>
+          <h3 data-en="Web developer intern">Becario de desarrollo web</h3>
+          <div class="meta" data-en="Company name · 2025 – Present">Nombre de la empresa · 2025 – Actualidad</div>
+          <p data-en="Built and maintained pages with HTML, CSS and JavaScript, and fixed bugs reported by the team.">Creación y mantenimiento de páginas con HTML, CSS y JavaScript, y corrección de errores detectados por el equipo.</p>
+        </li>
+        <li>
+          <h3 data-en="Customer service assistant">Auxiliar de atención al cliente</h3>
+          <div class="meta" data-en="Company name · 2023 – 2025">Nombre de la empresa · 2023 – 2025</div>
+          <p data-en="Handled daily enquiries, solved problems and kept customers informed.">Gestión de consultas diarias, resolución de incidencias y atención cercana a los clientes.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2 data-en="Education">Formación</h2>
+      <ul class="timeline">
+        <li>
+          <h3 data-en="Higher Vocational Degree in Web Application Development">Ciclo Superior en Desarrollo de Aplicaciones Web</h3>
+          <div class="meta" data-en="Your school · 2025 – 2027">Tu centro · 2025 – 2027</div>
+          <p data-en="Front-end, back-end, databases and deployment.">Front-end, back-end, bases de datos y despliegue.</p>
+        </li>
+        <li>
+          <h3 data-en="High school diploma">Bachillerato</h3>
+          <div class="meta" data-en="Your school · 2023 – 2025">Tu instituto · 2023 – 2025</div>
+          <p data-en="Science and technology track.">Modalidad de Ciencias y Tecnología.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2 data-en="Skills">Habilidades</h2>
+      <div class="skills">
+        <div class="skill">
+          <h3 data-en="Technical">Técnicas</h3>
+          <ul class="chips"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Git</li><li>Bootstrap</li></ul>
+        </div>
+        <div class="skill">
+          <h3 data-en="Personal">Personales</h3>
+          <ul class="chips">
+            <li data-en="Teamwork">Trabajo en equipo</li>
+            <li data-en="Communication">Comunicación</li>
+            <li data-en="Punctuality">Puntualidad</li>
+            <li data-en="Problem solving">Resolución de problemas</li>
+          </ul>
+        </div>
+        <div class="skill">
+          <h3 data-en="Languages">Idiomas</h3>
+          <ul class="chips">
+            <li data-en="Spanish · Native">Español · Nativo</li>
+            <li data-en="English · Intermediate">Inglés · Intermedio</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="hobbies">
+      <h2 data-en="Hobbies">Hobbies</h2>
+      <ul class="hobbies">
+        <li data-en="Video games">Videojuegos</li>
+        <li data-en="Football">Fútbol</li>
+        <li data-en="Music">Música</li>
+        <li data-en="Travelling">Viajar</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Alonso Casillas Flores</footer>
+
+  <script>
+    (function () {
+      var STORE = "cv-lang";
+      var els = document.querySelectorAll("[data-en]");
+      els.forEach(function (el) { el.setAttribute("data-es", el.textContent); });
+
+      function setLang(lang) {
+        els.forEach(function (el) { el.textContent = el.getAttribute("data-" + lang); });
+        document.documentElement.lang = lang;
+        document.title = lang === "en" ? "Alonso Casillas Flores · Resume" : "Alonso Casillas Flores · CV";
+        document.querySelectorAll(".lang span").forEach(function (s) {
+          s.classList.toggle("on", s.dataset.l === lang);
+        });
+        try { localStorage.setItem(STORE, lang); } catch (e) {}
+      }
+
+      var saved = "es";
+      try { saved = localStorage.getItem(STORE) || (navigator.language.startsWith("en") ? "en" : "es"); } catch (e) {}
+      setLang(saved);
+
+      document.getElementById("langBtn").addEventListener("click", function () {
+        setLang(document.documentElement.lang === "es" ? "en" : "es");
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
